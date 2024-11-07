@@ -48,17 +48,27 @@ resource "aws_security_group" "vault_sg" {
   description = "Allow Vault traffic"
   vpc_id      = aws_vpc.main.id
 
+  # Regel für den SSH-Zugriff
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Dies erlaubt SSH-Zugriff von überall; achten Sie auf die Sicherheit
+  }
+
+  # Regel für den Zugriff auf den Vault-Port (optional, wenn Vault über HTTP erreichbar ist)
   ingress {
     from_port   = 8200
     to_port     = 8200
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Achtung: Öffnet Port 8200 für alle
+    cidr_blocks = ["0.0.0.0/0"]  # Auch hier sollten Sie die IPs einschränken, die Zugriff haben
   }
 
+  # Regel für den ausgehenden Zugriff (optional)
   egress {
     from_port   = 0
     to_port     = 0
-    protocol    = "-1"
+    protocol    = "-1"  # Erlaubt allen ausgehenden Verkehr
     cidr_blocks = ["0.0.0.0/0"]
   }
 
