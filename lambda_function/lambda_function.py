@@ -57,7 +57,7 @@ def lambda_handler(event, context):
             password=password
         )
         if 'auth' in auth_response and 'client_token' in auth_response['auth']:
-            logger.info("Vault-Login erfolgreich.")
+            logger.info(f"Vault-Login erfolgreich für Benutzer: {username}")
             return {
                 'statusCode': 200,
                 'body': json.dumps('Login erfolgreich!')
