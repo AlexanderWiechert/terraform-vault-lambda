@@ -1,5 +1,9 @@
 .idea
 .terraform
 .terraform.lock.hcl
+.infracost
 terraform.tfstate
 terraform.tfstate.backup
+venv
+lambda_build
+lambda_function_deploy.zip
