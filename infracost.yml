@@ -1,0 +1,8 @@
+version: 0.1
+
+project:
+  name: terraform-vault-lambda
+  currency: EUR
+
+cost_estimation:
+  percentage_threshold: 20.0 
